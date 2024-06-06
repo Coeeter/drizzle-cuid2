@@ -3,6 +3,13 @@
   "license": "MIT",
   "version": "1.0.0",
   "description": "A library for generating cuid2 id columns for drizzle",
+  "scripts": {
+    "build": "tsup",
+    "lint": "tsc --noEmit && eslint . --ext .ts",
+    "test": "vitest",
+    "changeset": "changeset",
+    "release": "changeset version"
+  },
   "exports": {
     "./mysql": {
       "import": "./dist/mysql-core/index.mjs",
@@ -20,19 +27,30 @@
       "types": "./dist/postgres-core/index.d.ts"
     }
   },
-  "scripts": {
-    "build": "tsup",
-    "lint": "tsc"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.5",
-    "tsup": "^8.1.0",
-    "typescript": "^5.4.5"
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "drizzle",
+    "cuid2",
+    "cuid"
+  ],
+  "author": "Coeeter",
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2"
   },
   "peerDependencies": {
     "drizzle-orm": "^0.31.1"
   },
-  "dependencies": {
-    "@paralleldrive/cuid2": "^2.2.2"
+  "devDependencies": {
+    "@changesets/cli": "^2.27.5",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^8.5.6",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   }
 }
