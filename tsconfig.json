@@ -12,6 +12,5 @@
     "moduleResolution": "Bundler",
     "module": "ESNext",
     "noEmit": true
-  },
-  "include": ["src/**/*"]
+  }
 }

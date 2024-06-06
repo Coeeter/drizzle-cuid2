@@ -39,6 +39,7 @@ export class PgCuid2Builder<
   ): PgCuid2<MakeColumnConfig<T, TTableName>> {
     return new PgCuid2<MakeColumnConfig<T, TTableName>>(
       table,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
       this.config as ColumnBuilderRuntimeConfig<any, any>
     );
   }

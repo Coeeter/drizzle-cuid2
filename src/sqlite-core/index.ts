@@ -39,6 +39,7 @@ export class SQLiteCuid2Builder<
   ): SQLiteCuid2<MakeColumnConfig<T, TTableName>> {
     return new SQLiteCuid2<MakeColumnConfig<T, TTableName>>(
       table,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
       this.config as ColumnBuilderRuntimeConfig<any, any>
     );
   }

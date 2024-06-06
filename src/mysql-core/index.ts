@@ -39,6 +39,7 @@ export class MySqlCuid2Builder<
   ): MySqlCuid2<MakeColumnConfig<T, TTableName>> {
     return new MySqlCuid2<MakeColumnConfig<T, TTableName>>(
       table,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
       this.config as ColumnBuilderRuntimeConfig<any, any>
     );
   }

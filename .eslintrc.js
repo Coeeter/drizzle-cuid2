@@ -4,9 +4,9 @@ const config = {
   parserOptions: {
     project: true,
   },
-  plugins: ['@typescript-eslint', 'drizzle'],
+  ignorePatterns: ['dist/', 'node_modules/', '*.js', '*.d.ts'],
+  plugins: ['@typescript-eslint'],
   extends: [
-    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
   ],
@@ -33,18 +33,6 @@ const config = {
         checksVoidReturn: {
           attributes: false,
         },
-      },
-    ],
-    'drizzle/enforce-delete-with-where': [
-      'error',
-      {
-        drizzleObjectName: ['db', 'ctx.db'],
-      },
-    ],
-    'drizzle/enforce-update-with-where': [
-      'error',
-      {
-        drizzleObjectName: ['db', 'ctx.db'],
       },
     ],
   },
