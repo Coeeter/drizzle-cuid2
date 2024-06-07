@@ -25,9 +25,9 @@
       "types": "./dist/sqlite-core/index.d.ts"
     },
     "./postgres": {
-      "import": "./dist/postgres-core/index.mjs",
-      "require": "./dist/postgres-core/index.js",
-      "types": "./dist/postgres-core/index.d.ts"
+      "import": "./dist/pg-core/index.mjs",
+      "require": "./dist/pg-core/index.js",
+      "types": "./dist/pg-core/index.d.ts"
     }
   },
   "repository": {
