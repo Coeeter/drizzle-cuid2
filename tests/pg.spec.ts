@@ -1,10 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
 import { isCuid } from '@paralleldrive/cuid2';
 import { pgTable, text } from 'drizzle-orm/pg-core';
-import { PgCuid2, pgCuid2 } from '../src/pg-core';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { cuid2 } from '../src/pg-core';
+import { PgCuid2 } from '../src/pg-core/builder';
 
 const table = pgTable('users', {
-  id: pgCuid2('id').defaultRandom().primaryKey(),
+  id: cuid2('id').defaultRandom().primaryKey(),
   name: text('name'),
 });
 

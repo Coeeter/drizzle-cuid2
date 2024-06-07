@@ -1,10 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
 import { isCuid } from '@paralleldrive/cuid2';
-import { MySqlCuid2, mysqlCuid2 } from '../src/mysql-core';
 import { mysqlTable, text } from 'drizzle-orm/mysql-core';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { cuid2 } from '../src/mysql-core';
+import { MySqlCuid2 } from '../src/mysql-core/builder';
 
 const table = mysqlTable('users', {
-  id: mysqlCuid2('id').defaultRandom().primaryKey(),
+  id: cuid2('id').defaultRandom().primaryKey(),
   name: text('name'),
 });
 

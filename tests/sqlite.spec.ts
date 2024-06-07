@@ -1,10 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { sqliteCuid2, SQLiteCuid2 } from '../src/sqlite-core';
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { isCuid } from '@paralleldrive/cuid2';
+import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { cuid2 } from '../src/sqlite-core';
+import { SQLiteCuid2 } from '../src/sqlite-core/builder';
 
 const table = sqliteTable('users', {
-  id: sqliteCuid2('id').defaultRandom().primaryKey(),
+  id: cuid2('id').defaultRandom().primaryKey(),
   name: text('name'),
 });
 
