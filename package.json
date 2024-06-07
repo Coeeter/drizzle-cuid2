@@ -1,8 +1,13 @@
 {
   "name": "drizzle-cuid2",
-  "license": "MIT",
   "version": "1.0.4",
-  "description": "A library for generating cuid2 id columns for drizzle",
+  "description": "A utility package for generating CUID2 columns in Drizzle ORM",
+  "license": "MIT",
+  "author": "Coeeter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coeeter/drizzle-cuid2.git"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -35,10 +40,6 @@
       "types": "./dist/pg-core/index.d.ts"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Coeeter/drizzle-cuid2.git"
-  },
   "files": [
     "dist",
     "README.md",
@@ -49,7 +50,6 @@
     "cuid2",
     "cuid"
   ],
-  "author": "Coeeter",
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2"
   },
