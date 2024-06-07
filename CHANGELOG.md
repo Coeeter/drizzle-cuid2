@@ -1,5 +1,12 @@
 # drizzle-cuid2
 
+## 1.0.5
+
+### Patch Changes
+
+- aead402: Added documentation on how to use this package
+- aead402: Cleaned up package.json
+
 ## 1.0.4
 
 ### Patch Changes
