@@ -1,7 +1,7 @@
 {
   "name": "drizzle-cuid2",
   "license": "MIT",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "description": "A library for generating cuid2 id columns for drizzle",
   "publishConfig": {
     "access": "public"
@@ -54,7 +54,7 @@
     "@paralleldrive/cuid2": "^2.2.2"
   },
   "peerDependencies": {
-    "drizzle-orm": "^0.31.1"
+    "drizzle-orm": ">=0.28.3"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.5",

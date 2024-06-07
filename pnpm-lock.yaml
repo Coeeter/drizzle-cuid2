@@ -12,7 +12,7 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2
       drizzle-orm:
-        specifier: ^0.31.1
+        specifier: '>=0.28.3'
         version: 0.31.1
     devDependencies:
       '@changesets/cli':
