@@ -1,5 +1,11 @@
 # drizzle-cuid2
 
+## 1.0.4
+
+### Patch Changes
+
+- c95d2d8: Updated peerdependency of drizzle
+
 ## 1.0.3
 
 ### Patch Changes
