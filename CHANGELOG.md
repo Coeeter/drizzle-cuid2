@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- 27f877c: Fixed global import error
+
+## 1.0.2
+
+### Patch Changes
+
 - 6aa7575: Added global import for cuid functions
 
 ## 1.0.1
