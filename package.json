@@ -1,0 +1,68 @@
+{
+  "name": "drizzle-cuid2",
+  "version": "1.0.5",
+  "description": "A utility package for generating CUID2 columns in Drizzle ORM",
+  "license": "MIT",
+  "author": "Coeeter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coeeter/drizzle-cuid2.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "lint": "tsc --noEmit && eslint src --ext .ts",
+    "test": "vitest run",
+    "changeset": "changeset",
+    "release": "pnpm build && changeset publish"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./mysql": {
+      "import": "./dist/mysql-core/index.mjs",
+      "require": "./dist/mysql-core/index.js",
+      "types": "./dist/mysql-core/index.d.ts"
+    },
+    "./sqlite": {
+      "import": "./dist/sqlite-core/index.mjs",
+      "require": "./dist/sqlite-core/index.js",
+      "types": "./dist/sqlite-core/index.d.ts"
+    },
+    "./postgres": {
+      "import": "./dist/pg-core/index.mjs",
+      "require": "./dist/pg-core/index.js",
+      "types": "./dist/pg-core/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "drizzle",
+    "cuid2",
+    "cuid"
+  ],
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2"
+  },
+  "peerDependencies": {
+    "drizzle-orm": ">=0.28.3"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.5",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^8.5.6",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
