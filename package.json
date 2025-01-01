@@ -1,6 +1,6 @@
 {
   "name": "drizzle-cuid2",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "A utility package for generating CUID2 columns in Drizzle ORM",
   "license": "MIT",
   "author": "Coeeter",
