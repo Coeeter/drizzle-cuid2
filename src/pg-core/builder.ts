@@ -28,9 +28,9 @@ export type PgCuid2BuilderInitial<TName extends string> = Omit<
 export class PgCuid2Builder<
   T extends ColumnBuilderBaseConfig<'string', 'PgCuid2'>
 > extends PgColumnBuilder<T> {
-  static readonly [entityKind]: string = 'PgCuid2Builder';
+  static override readonly [entityKind]: string = 'PgCuid2Builder';
 
-  constructor(name: string) {
+  constructor(name: T['name']) {
     super(name, 'string', 'PgCuid2');
   }
 
@@ -58,9 +58,9 @@ export class PgCuid2Builder<
 export class PgCuid2<
   T extends ColumnBaseConfig<'string', 'PgCuid2'>
 > extends PgColumn<T> {
-  static readonly [entityKind]: string = 'PgCuid2';
+  static override readonly [entityKind]: string = 'PgCuid2';
 
   getSQLType(): string {
-    return `varchar(32)`;
+    return `varchar(24)`;
   }
 }

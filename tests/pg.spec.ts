@@ -59,6 +59,6 @@ describe('pgCuid2', () => {
   });
 
   it('should have the correct sql type', () => {
-    expect(column.getSQLType()).toBe('varchar(32)');
+    expect(column.getSQLType()).toBe('varchar(24)');
   });
 });

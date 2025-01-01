@@ -61,6 +61,6 @@ export class SQLiteCuid2<
   static readonly [entityKind]: string = 'SQLiteCuid2';
 
   getSQLType(): string {
-    return `text(32)`;
+    return `text(24)`;
   }
 }

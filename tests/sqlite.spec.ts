@@ -59,6 +59,6 @@ describe('sqliteCuid2', () => {
   });
 
   it('should have the correct sql type', () => {
-    expect(column.getSQLType()).toBe('text(32)');
+    expect(column.getSQLType()).toBe('text(24)');
   });
 });

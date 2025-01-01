@@ -28,9 +28,9 @@ export type MySqlCuid2BuilderInitial<TName extends string> = Omit<
 export class MySqlCuid2Builder<
   T extends ColumnBuilderBaseConfig<'string', 'MySqlCuid2'>
 > extends MySqlColumnBuilder<T> {
-  static readonly [entityKind]: string = 'MySqlCuid2Builder';
+  static override readonly [entityKind]: string = 'MySqlCuid2Builder';
 
-  constructor(name: string) {
+  constructor(name: T['name']) {
     super(name, 'string', 'MySqlCuid2');
   }
 
@@ -58,9 +58,9 @@ export class MySqlCuid2Builder<
 export class MySqlCuid2<
   T extends ColumnBaseConfig<'string', 'MySqlCuid2'>
 > extends MySqlColumn<T> {
-  static readonly [entityKind]: string = 'MySqlCuid2';
+  static override readonly [entityKind]: string = 'MySqlCuid2';
 
   getSQLType(): string {
-    return `varchar(32)`;
+    return `varchar(24)`;
   }
 }
