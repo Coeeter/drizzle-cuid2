@@ -1,5 +1,11 @@
 # drizzle-cuid2
 
+## 2.0.0
+
+### Major Changes
+
+- 10a0287: Made column names optional to make the package compatible with drizzle-orm's latest version and changed length of columns from 32 to 24
+
 ## 1.0.5
 
 ### Patch Changes
