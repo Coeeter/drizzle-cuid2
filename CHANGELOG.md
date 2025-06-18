@@ -1,5 +1,12 @@
 # drizzle-cuid2
 
+## 2.1.0
+
+### Minor Changes
+
+- Added support for customizing CUID2 length using the `setLength` method
+- Updated SQL type definitions to use the configured length
+
 ## 2.0.0
 
 ### Major Changes
