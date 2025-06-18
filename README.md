@@ -172,6 +172,21 @@ export const posts = sqliteTable('posts', {
 });
 ```
 
+### Customizing CUID2 Length
+
+You can customize the length of the generated CUID2 values using the `setLength` method. The default length is 24 characters.
+
+```ts
+import { pgTable } from 'drizzle-orm/pg-core';
+import { cuid2 } from 'drizzle-cuid2/postgres';
+
+export const users = pgTable('doctors', {
+  // Generate CUID2s with a length of 32 characters
+  id: cuid2('id').setLength(32).defaultRandom().primaryKey(),
+  // other columns...
+});
+```
+
 ## Issues
 
 If you find a bug or have a feature request, please report them in this repository's [issues section](https://github.com/Coeeter/drizzle-cuid2/issues).

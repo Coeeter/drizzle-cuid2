@@ -1,4 +1,4 @@
-import { createId } from '@paralleldrive/cuid2';
+import { init } from '@paralleldrive/cuid2';
 import {
   type ColumnBuilderRuntimeConfig,
   entityKind,
@@ -12,6 +12,12 @@ import {
   SQLiteColumnBuilder,
   type AnySQLiteTable,
 } from 'drizzle-orm/sqlite-core';
+
+export type SQLiteCuid2Config = {
+  length: number;
+};
+
+const createId = (length: number) => init({ length });
 
 export type SQLiteCuid2BuilderInitial<TName extends string> = Omit<
   SQLiteCuid2Builder<{
@@ -29,6 +35,7 @@ export class SQLiteCuid2Builder<
   T extends ColumnBuilderBaseConfig<'string', 'SQLiteCuid2'>
 > extends SQLiteColumnBuilder<T> {
   static readonly [entityKind]: string = 'SQLiteCuid2Builder';
+  private length = 24;
 
   constructor(name: string) {
     super(name, 'string', 'SQLiteCuid2');
@@ -39,8 +46,11 @@ export class SQLiteCuid2Builder<
   ): SQLiteCuid2<MakeColumnConfig<T, TTableName>> {
     return new SQLiteCuid2<MakeColumnConfig<T, TTableName>>(
       table,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-      this.config as ColumnBuilderRuntimeConfig<any, any>
+      this.config as ColumnBuilderRuntimeConfig<
+        T extends { $type: infer U } ? U : T['data'],
+        SQLiteCuid2Config
+      >,
+      this.length
     );
   }
 
@@ -49,9 +59,18 @@ export class SQLiteCuid2Builder<
    * The function will be called when the row is inserted, and the returned value will be used as the column value.
    */
   defaultRandom(): HasDefault<this> {
-    this.config.defaultFn = () => createId();
+    this.config.defaultFn = () => createId(this.length)();
     this.config.hasDefault = true;
     return this as HasDefault<this>;
+  }
+
+  /***
+   * Sets the length of the CUID2 value.
+   * @param length The length of the CUID2 value (default: 24)
+   */
+  setLength(length: number): this {
+    this.length = length;
+    return this;
   }
 }
 
@@ -59,8 +78,21 @@ export class SQLiteCuid2<
   T extends ColumnBaseConfig<'string', 'SQLiteCuid2'>
 > extends SQLiteColumn<T> {
   static readonly [entityKind]: string = 'SQLiteCuid2';
+  private length: number;
+
+  constructor(
+    table: AnySQLiteTable<{ name: string }>,
+    config: ColumnBuilderRuntimeConfig<
+      T extends { $type: infer U } ? U : T['data'],
+      SQLiteCuid2Config
+    >,
+    length: number
+  ) {
+    super(table, config);
+    this.length = length;
+  }
 
   getSQLType(): string {
-    return `text(24)`;
+    return `text(${this.length})`;
   }
 }
