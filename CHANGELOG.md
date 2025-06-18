@@ -4,6 +4,12 @@
 
 ### Minor Changes
 
+- 9be37dc: Refactor MySql, Pg, and SQLite builders to support variable CUID2 lengths and add corresponding tests.
+
+## 2.1.0
+
+### Minor Changes
+
 - Added support for customizing CUID2 length using the `setLength` method
 - Updated SQL type definitions to use the configured length
 
