@@ -15,6 +15,7 @@ import {
 
 export type MySqlCuid2Config = {
   length: number;
+  prefix?: string;
 };
 
 const createId = (length: number) => init({ length });
@@ -36,6 +37,7 @@ export class MySqlCuid2Builder<
 > extends MySqlColumnBuilder<T> {
   static override readonly [entityKind]: string = 'MySqlCuid2Builder';
   private length = 24;
+  private prefix?: string;
 
   constructor(name: T['name']) {
     super(name, 'string', 'MySqlCuid2');
@@ -50,7 +52,8 @@ export class MySqlCuid2Builder<
         T extends { $type: infer U } ? U : T['data'],
         MySqlCuid2Config
       >,
-      this.length
+      this.length,
+      this.prefix
     );
   }
 
@@ -59,7 +62,10 @@ export class MySqlCuid2Builder<
    * The function will be called when the row is inserted, and the returned value will be used as the column value.
    */
   defaultRandom(): HasDefault<this> {
-    this.config.defaultFn = () => createId(this.length)();
+    this.config.defaultFn = () => {
+      const id = createId(this.length)();
+      return this.prefix ? `${this.prefix}${id}` : id;
+    };
     this.config.hasDefault = true;
     return this as HasDefault<this>;
   }
@@ -72,6 +78,15 @@ export class MySqlCuid2Builder<
     this.length = length;
     return this;
   }
+
+  /***
+   * Sets the prefix for the CUID2 value.
+   * @param prefix The prefix to prepend to the CUID2 value
+   */
+  setPrefix(prefix: string): this {
+    this.prefix = prefix;
+    return this;
+  }
 }
 
 export class MySqlCuid2<
@@ -79,6 +94,7 @@ export class MySqlCuid2<
 > extends MySqlColumn<T> {
   static override readonly [entityKind]: string = 'MySqlCuid2';
   private length: number;
+  private prefix?: string;
 
   constructor(
     table: AnyMySqlTable<{ name: string }>,
@@ -86,13 +102,16 @@ export class MySqlCuid2<
       T extends { $type: infer U } ? U : T['data'],
       MySqlCuid2Config
     >,
-    length: number
+    length: number,
+    prefix?: string
   ) {
     super(table, config);
     this.length = length;
+    this.prefix = prefix;
   }
 
   getSQLType(): string {
-    return `varchar(${this.length})`;
+    const totalLength = this.prefix ? this.length + this.prefix.length : this.length;
+    return `varchar(${totalLength})`;
   }
 }
