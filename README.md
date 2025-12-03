@@ -31,7 +31,6 @@ yarn add drizzle-cuid2
 ```
 
 Installing with [pnpm](https://pnpm.io/):
-- [Issues](#issues)
 
 ```bash
 pnpm add drizzle-cuid2
