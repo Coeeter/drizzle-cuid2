@@ -9,6 +9,8 @@
   - [Postgres example](#postgres-example)
   - [MySQL example](#mysql-example)
   - [SQLite example](#sqlite-example)
+  - [Customizing CUID2 Length](#customizing-cuid2-length)
+  - [Customizing Prefix](#customizing-prefix)
 - [Issues](#issues)
 - [License](#license)
 - [Contributing](#contributing)
@@ -29,6 +31,7 @@ yarn add drizzle-cuid2
 ```
 
 Installing with [pnpm](https://pnpm.io/):
+- [Issues](#issues)
 
 ```bash
 pnpm add drizzle-cuid2
@@ -183,6 +186,42 @@ import { cuid2 } from 'drizzle-cuid2/postgres';
 export const users = pgTable('doctors', {
   // Generate CUID2s with a length of 32 characters
   id: cuid2('id').setLength(32).defaultRandom().primaryKey(),
+  // other columns...
+});
+```
+
+### Customizing Prefix
+
+You can add a prefix to the generated CUID2 values using the `setPrefix` method. This is useful for namespacing IDs by entity type.
+
+There is not built in delimiter, so make sure to include one if you would like separation between prefix and id.
+
+```ts
+import { pgTable } from 'drizzle-orm/pg-core';
+import { cuid2 } from 'drizzle-cuid2/postgres';
+
+export const users = pgTable('users', {
+  // Generate CUID2s with a 'usr_' prefix
+  id: cuid2('id').setPrefix('usr_').defaultRandom().primaryKey(),
+  // other columns...
+});
+
+export const posts = pgTable('posts', {
+  // Generate CUID2s with a 'post_' prefix
+  id: cuid2('id').setPrefix('post_').defaultRandom().primaryKey(),
+  // other columns...
+});
+```
+
+You can also combine `setPrefix` with `setLength`:
+
+```ts
+import { pgTable } from 'drizzle-orm/pg-core';
+import { cuid2 } from 'drizzle-cuid2/postgres';
+
+export const users = pgTable('users', {
+  // Generate CUID2s with a 'usr_' prefix and custom length of 16
+  id: cuid2('id').setPrefix('usr_').setLength(16).defaultRandom().primaryKey(),
   // other columns...
 });
 ```
