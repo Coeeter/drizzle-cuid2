@@ -1,5 +1,11 @@
 # drizzle-cuid2
 
+## 2.2.0
+
+### Minor Changes
+
+- 284f867: Add prefix support and corresponding tests
+
 ## 2.1.0
 
 ### Minor Changes
