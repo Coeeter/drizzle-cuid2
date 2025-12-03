@@ -206,8 +206,8 @@ export const users = pgTable('users', {
 });
 
 export const posts = pgTable('posts', {
-  // Generate CUID2s with a 'post_' prefix
-  id: cuid2('id').setPrefix('post_').defaultRandom().primaryKey(),
+  // Generate CUID2s with a 'post' prefix, this will have no delimiter. e.g. postn04n62wsow10n3l4huidgkle
+  id: cuid2('id').setPrefix('post').defaultRandom().primaryKey(),
   // other columns...
 });
 ```
